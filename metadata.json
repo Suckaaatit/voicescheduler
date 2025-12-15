@@ -1,0 +1,7 @@
+{
+  "name": "VoiceScheduler",
+  "description": "A real-time voice scheduling agent interface powered by Vapi, featuring a modern UI for scheduling Google Calendar events via voice.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
