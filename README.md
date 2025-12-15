@@ -4,8 +4,8 @@ A real-time voice assistant capable of scheduling Google Calendar events via nat
 
 ## 🚀 Live Demo
 
-**Deployed App URL**: [INSERT_YOUR_RAILWAY_URL_HERE]  
-**Agent Public Link**: [INSERT_VAPI_PUBLIC_LINK_IF_AVAILABLE]
+**Deployed App URL**: https://voicescheduler-production.up.railway.app  
+**Agent Public Link**: [ADD_YOUR_VAPI_ASSISTANT_PUBLIC_LINK]
 
 ## 🛠 Tech Stack
 
@@ -37,14 +37,16 @@ If `CAL_API_KEY` is set, the backend will use **Cal.com**. Otherwise it falls ba
 
 ```env
 CAL_API_KEY=cal_live_...
-CAL_EVENT_TYPE_ID=123
+CAL_USERNAME=bull-toru-hvayh5
+CAL_EVENT_TYPE_SLUG=my-space
 CAL_ATTENDEE_TIMEZONE=Asia/Kolkata
 ```
 
 #### Notes
 
 - Cal.com booking creation requires an attendee **email**.
-- The backend creates a booking via `POST https://api.cal.com/v2/bookings` and returns a booking link.
+- The backend creates a booking via `POST https://api.cal.com/v2/bookings` and returns a booking UID + dashboard link.
+- After creation, verify in Cal.com dashboard: `https://app.cal.com/bookings`
 
 ### Google Calendar (fallback)
 
@@ -106,7 +108,7 @@ The backend requests:
    ```bash
    npm install
    ```
-3. Configure Environment Variables in `.env`:
+3. Configure Environment Variables in `.env.local` (recommended for local dev):
    ```env
    PORT=3000
    
@@ -121,12 +123,41 @@ The backend requests:
    # Set this to your personal email to see events on your calendar
    GOOGLE_CALENDAR_ID=your-personal-email@gmail.com
    ```
-4. **CRITICAL STEP**: Go to Google Calendar (web), find the calendar matching `GOOGLE_CALENDAR_ID`, go to **Settings and sharing**, and **Share with specific people**. Add the `GOOGLE_CLIENT_EMAIL` address and give it **Make changes to events** permission.
-
-5. Start the server:
+4. Start the server:
    ```bash
    npm start
    ```
+
+#### Local (recommended): Cal.com setup
+
+If you want the easiest local setup, use Cal.com instead of Google Calendar.
+
+Create `.env.local`:
+
+```env
+CAL_API_KEY=cal_live_...
+CAL_USERNAME=bull-toru-hvayh5
+CAL_EVENT_TYPE_SLUG=my-space
+CAL_ATTENDEE_TIMEZONE=Asia/Kolkata
+```
+
+Restart backend after changing env vars.
+
+#### Optional: Google Calendar setup (fallback)
+
+If you prefer Google Calendar instead, set Google credentials env vars (see above) and also:
+
+**CRITICAL STEP**: Go to Google Calendar (web), find the calendar matching `GOOGLE_CALENDAR_ID`, go to **Settings and sharing**, and **Share with specific people**. Add the `GOOGLE_CLIENT_EMAIL` address and give it **Make changes to events** permission.
+
+### 3. Frontend Setup (Local)
+
+In a second terminal:
+
+```bash
+npm run dev
+```
+
+Open: `http://localhost:5173`
 
 ### 3. Vapi Agent Configuration
 1. Go to [Vapi Dashboard](https://dashboard.vapi.ai).
@@ -166,17 +197,58 @@ The backend requests:
      ```
    - **Server URL**: Set to your deployed backend URL + `/vapi/webhook`.
 
-### 4. Frontend Setup
-1. Open `App.tsx` or run the development server.
+### 4. App Setup (Vapi keys)
+1. Open the app.
 2. Click the **Settings (Gear Icon)**.
 3. Enter your **Vapi Public Key** and **Assistant ID**.
 
 ## 🧪 Testing
 
-1. Open the web interface.
-2. Click "Start Conversation".
-3. Say: *"Hi, I'd like to book a meeting."*
-4. Provide the requested details.
-5. Say: *"Yes, that sounds correct."*
-6. Check the Google Calendar associated with the Service Account to see the new event.
+### Deployed (recommended)
+
+1. Open the deployed app:
+
+   https://voicescheduler-production.up.railway.app
+
+2. In Vapi, set your tool **Server URL** to:
+
+   `https://voicescheduler-production.up.railway.app/vapi/webhook`
+
+3. Start the conversation and say something like:
+
+   "My name is Akash. Schedule a meeting tomorrow at 2:30pm. My email is test@example.com. Title: Vikara Assignment Test."
+
+4. Confirm details when the agent repeats them.
+
+5. Verify the booking exists in Cal.com:
+
+   `https://app.cal.com/bookings`
+
+### Local (optional)
+
+1. Backend:
+
+   ```bash
+   npm start
+   ```
+
+2. Frontend:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Open: `http://localhost:5173`
+
+## 🎥 Proof (Screenshots / Logs / Loom)
+
+Include at least one of the following in your submission:
+
+- A screenshot of the app conversation (or Vapi logs) showing a successful `create_calendar_event` tool call.
+- A screenshot of the created booking inside Cal.com: `https://app.cal.com/bookings`
+- OR a short Loom video showing:
+  - the voice conversation
+  - the booking confirmation
+  - the Cal.com dashboard entry
+
 
