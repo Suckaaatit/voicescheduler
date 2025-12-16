@@ -1,8 +1,8 @@
-🎙️ Voice Scheduler
+**🎙️ Voice Scheduler**
 
 A voice-controlled scheduling assistant that uses Vapi to collect meeting details via conversation and creates bookings in Cal.com, with an optional Google Calendar fallback.
 
-🚀 Live Demo
+**🚀 Live Demo**
 
 Deployed App
 https://voicescheduler-production.up.railway.app
@@ -13,7 +13,7 @@ https://voicescheduler-production.up.railway.app/health
 Vapi Webhook Endpoint
 https://voicescheduler-production.up.railway.app/vapi/webhook
 
-✅ How to Test the Voice Agent (Deployed)
+**✅ How to Test the Voice Agent (Deployed)**
 1️⃣ Configure Vapi Assistant
 
 In your Vapi Assistant settings:
@@ -50,7 +50,7 @@ Tool Parameters (JSON Schema)
   "required": ["name", "email", "date", "time"]
 }
 
-2️⃣ Use the Deployed Web App
+**2️⃣ Use the Deployed Web App**
 
 Open the app
 👉 https://voicescheduler-production.up.railway.app
@@ -66,7 +66,7 @@ Title: Vikara Assignment Test.”
 
 Confirm the details when the assistant repeats them.
 
-Verify the booking in Cal.com:
+**Verify the booking in Cal.com:**
 👉 https://app.cal.com/bookings
 
 🧑‍💻 Run Locally (Optional)
@@ -97,7 +97,7 @@ http://localhost:5173
 Backend Health Check
 http://localhost:3000/health
 
-📅 Calendar Integration
+**📅 Calendar Integration**
 
 This project supports Cal.com (Primary) and Google Calendar (Optional Fallback).
 
@@ -126,7 +126,7 @@ A booking UID is returned
 
 A Cal.com dashboard link is provided
 
-View bookings at:
+**View bookings at:**
 👉 https://app.cal.com/bookings
 
 🔄 Google Calendar (Fallback)
@@ -139,7 +139,7 @@ Uses Service Account credentials
 
 Acts as a fallback scheduling mechanism
 
-🛠️ Tech Stack
+**🛠️ Tech Stack**
 
 Frontend: React + Vite
 
