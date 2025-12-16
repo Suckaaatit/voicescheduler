@@ -1,6 +1,12 @@
 **🎙️ Voice Scheduler**
 
 A voice-controlled scheduling assistant that uses Vapi to collect meeting details via conversation and creates bookings in Cal.com, with an optional Google Calendar fallback.
+<img width="927" height="393" alt="image" src="https://github.com/user-attachments/assets/4b8df42a-58c8-4a0e-a1f3-1efd207796cb" />
+
+
+
+<img width="956" height="231" alt="image" src="https://github.com/user-attachments/assets/cde41bd3-2eba-4b6f-87af-ed3cec46eb5a" />
+
 
 **🚀 Live Demo**
 
