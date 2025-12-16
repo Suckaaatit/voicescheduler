@@ -1,69 +1,153 @@
-README (paste this section)
+Voice Scheduler
+
+A voice-controlled scheduling assistant that books meetings via Cal.com using Vapi voice agents, with an optional Google Calendar fallback.
+
 🚀 Live Demo
-Deployed App URL: https://voicescheduler-production.up.railway.app
-Backend Health Check: https://voicescheduler-production.up.railway.app/health
-Vapi Webhook Endpoint: https://voicescheduler-production.up.railway.app/vapi/webhook
+
+Deployed App:
+https://voicescheduler-production.up.railway.app
+
+Backend Health Check:
+https://voicescheduler-production.up.railway.app/health
+
+Vapi Webhook Endpoint:
+https://voicescheduler-production.up.railway.app/vapi/webhook
+
 ✅ How to Test the Voice Agent (Deployed)
-1) Set up Vapi
+1️⃣ Set Up Vapi
+
 In your Vapi Assistant settings:
 
-Tool name: create_calendar_event
-Tool Server URL:
-https://voicescheduler-production.up.railway.app/vapi/webhook
-Tool parameters (JSON schema example):
+Tool Name: create_calendar_event
 
-json
+Tool Server URL:
+
+https://voicescheduler-production.up.railway.app/vapi/webhook
+
+
+Tool Parameters (JSON Schema):
+
 {
   "type": "object",
   "properties": {
     "name": { "type": "string" },
-    "email": { "type": "string", "description": "Required for Cal.com bookings" },
-    "date": { "type": "string", "description": "ISO date YYYY-MM-DD" },
-    "time": { "type": "string", "description": "24hr format HH:MM" },
+    "email": {
+      "type": "string",
+      "description": "Required for Cal.com bookings"
+    },
+    "date": {
+      "type": "string",
+      "description": "ISO date format (YYYY-MM-DD)"
+    },
+    "time": {
+      "type": "string",
+      "description": "24-hour format (HH:MM)"
+    },
     "title": { "type": "string" }
   },
   "required": ["name", "email", "date", "time"]
 }
-2) Use the deployed web app
-Open: https://voicescheduler-production.up.railway.app
-Enter your Vapi Public Key + Assistant ID in the settings modal.
-Start the voice conversation and say something like: “My name is Akash. Schedule a meeting tomorrow at 2:30pm. My email is test@example.com. Title: Vikara Assignment Test.”
-Confirm when the assistant repeats the details.
-Verify booking created in Cal.com dashboard:
-https://app.cal.com/bookings
+
+2️⃣ Use the Deployed Web App
+
+Open:
+👉 https://voicescheduler-production.up.railway.app
+
+Enter your Vapi Public Key and Assistant ID in the Settings modal.
+
+Start the voice conversation and say something like:
+
+“My name is Akash. Schedule a meeting tomorrow at 2:30 PM.
+My email is test@example.com
+.
+Title: Vikara Assignment Test.”
+
+Confirm the details when the assistant repeats them.
+
+Verify the booking in the Cal.com dashboard:
+👉 https://app.cal.com/bookings
+
 🧑‍💻 Optional: Run Locally
 Prerequisites
+
 Node.js v18+
-1) Install
-bash
+
+1️⃣ Install Dependencies
 npm install
-2) Create .env.local (Cal.com)
-env
+
+2️⃣ Create .env.local (Cal.com Configuration)
 CAL_API_KEY=cal_live_...
 CAL_USERNAME=bull-toru-hvayh5
 CAL_EVENT_TYPE_SLUG=my-space
 CAL_ATTENDEE_TIMEZONE=Asia/Kolkata
-3) Run backend (Terminal 1)
-bash
+
+3️⃣ Run Backend (Terminal 1)
 npm start
-4) Run frontend (Terminal 2)
-bash
+
+4️⃣ Run Frontend (Terminal 2)
 npm run dev
-Open:
+
+🌐 Local URLs
 
 Frontend: http://localhost:5173
-Backend health: http://localhost:3000/health
-📅 Calendar Integration (How it works)
-This project supports Cal.com (primary) and Google Calendar (optional fallback).
 
-Cal.com (Primary)
-If CAL_API_KEY is set, the backend uses Cal.com to create a real booking:
+Backend Health Check: http://localhost:3000/health
 
-Endpoint used: POST https://api.cal.com/v2/bookings
-Auth: Authorization: Bearer <CAL_API_KEY>
-Required inputs:
-name, email, date, time
-After success, the backend returns a booking UID and a dashboard link.
-Confirm bookings in: https://app.cal.com/bookings
-Google Calendar (Fallback)
-If Cal.com is not configured, the backend can create Google Calendar events using service account credentials (optional path).
+📅 Calendar Integration (How It Works)
+
+This project supports Cal.com (Primary) with an optional Google Calendar fallback.
+
+✅ Cal.com (Primary)
+
+If CAL_API_KEY is configured, the backend creates real bookings using Cal.com.
+
+API Endpoint:
+
+POST https://api.cal.com/v2/bookings
+
+
+Authentication:
+
+Authorization: Bearer <CAL_API_KEY>
+
+
+Required Inputs:
+
+name
+
+email
+
+date
+
+time
+
+After a successful booking:
+
+The backend returns a booking UID
+
+A Cal.com dashboard link is provided
+
+📍 View bookings here:
+👉 https://app.cal.com/bookings
+
+🔄 Google Calendar (Fallback)
+
+If Cal.com is not configured:
+
+The backend can optionally create Google Calendar events
+
+Uses Service Account credentials
+
+Acts as a fallback scheduling mechanism
+
+🛠️ Tech Stack
+
+Frontend: Vite + React
+
+Backend: Node.js + Express
+
+Voice AI: Vapi
+
+Scheduling: Cal.com API
+
+Deployment: Railway
