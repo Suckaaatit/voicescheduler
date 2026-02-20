@@ -8,10 +8,6 @@ A voice-controlled scheduling assistant that uses Vapi to collect meeting detail
 <img width="956" height="231" alt="image" src="https://github.com/user-attachments/assets/cde41bd3-2eba-4b6f-87af-ed3cec46eb5a" />
 
 
-**🚀 Live Demo**
-
-Deployed App
-https://voicescheduler-production.up.railway.app
 
 Backend Health Check
 https://voicescheduler-production.up.railway.app/health
