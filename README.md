@@ -54,8 +54,7 @@ Tool Parameters (JSON Schema)
 
 **2️⃣ Use the Deployed Web App**
 
-Open the app
-👉 https://voicescheduler-production.up.railway.app
+
 
 Enter your Vapi Public Key and Assistant ID in the Settings modal.
 
